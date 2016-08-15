@@ -1,0 +1,34 @@
+{
+  "mongoose":{
+    "UsersUri": "mongodb://127.0.0.1/test_IStudentAPI",
+    "PSSUri": "mongodb://127.0.0.1/test_PSS",
+    "SSOUri": "mongodb://127.0.0.1/test_sso",
+    "BZUri": "mongodb://127.0.0.1/test_IStudentAPI"
+  },
+  "sso":{
+    "session":{
+      "secret": "superSecretKey",
+      "key": "StudCloud:session:",
+      "cookie":{
+        "path": "/",
+        "maxAge":2592000000,
+        "httpOnly": true
+      }
+    }
+  },
+  "logs":{
+    "UAMS":{
+      "path": "",
+      "label": "UAMS"
+    },
+    "SSO":{
+      "path": "",
+      "label": "SSO"
+    },
+    "BZ":{
+      "path": "/Users/anton/GitHub/KnowBase/logs/BZ.out",
+      "label": "BZ"
+    }
+  }
+
+}

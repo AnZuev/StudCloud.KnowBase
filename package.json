@@ -1,0 +1,29 @@
+{
+  "name": "@anzuev/knowbase",
+  "version": "0.0.1",
+  "description": "BZ module for StudCloud project",
+  "main": "bin/www",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "studcloud",
+    "bz"
+  ],
+  "author": "AnZuev",
+  "license": "ISC",
+  "dependencies": {
+    "@anzuev/studcloud.errors": "^0.2.0",
+    "log4js": "^0.6.38",
+    "mongoose": "^4.5.8",
+    "nconf": "^0.8.4",
+    "path": "^0.12.7",
+    "q": "^1.4.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-jsdoc-to-markdown": "^1.2.2",
+    "gulp-util": "^3.0.7"
+  }
+}
