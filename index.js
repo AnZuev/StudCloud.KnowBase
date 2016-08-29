@@ -2,6 +2,8 @@
  * @module BZ
  */
 
+
+'use strict';
 const DbError = require('@anzuev/studcloud.errors').DbError;
 const ValidationError = require('@anzuev/studcloud.errors').ValidationError;
 /**

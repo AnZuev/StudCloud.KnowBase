@@ -10,6 +10,7 @@
     "studcloud",
     "bz"
   ],
+  "repository": "https://github.com/AnZuev/StudCloud.KnowBase.git",
   "author": "AnZuev",
   "license": "ISC",
   "dependencies": {
