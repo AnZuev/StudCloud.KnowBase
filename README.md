@@ -40,6 +40,7 @@
 | Name | Type | Description |
 | --- | --- | --- |
 | title | <code>String</code> | Название |
+| description | <code>String</code> | Описание |
 | author | <code>Mongoose.Types.ObjectId</code> | Автор |
 | created | <code>Date</code> | Дата создания |
 | social | <code>object</code> | Объект соц информации |
@@ -68,6 +69,7 @@
         * [.removePart(partId)](#module_BZ..Document+removePart) ⇒ <code>boolean</code>
         * [.saveDoc()](#module_BZ..Document+saveDoc) ⇒ <code>Document</code>
     * _static_
+        * [.formatToSearch(UAMS, WT, userId)](#module_BZ..Document.formatToSearch) ⇒ <code>Object</code>
         * [.getDocumentsBy(title, context, page)](#module_BZ..Document.getDocumentsBy) ⇒ <code>Promise</code> &#124; <code>Promise.&lt;T&gt;</code>
         * [.addLike(documentId, userId)](#module_BZ..Document.addLike) ⇒ <code>Boolean</code>
         * [.addDislike(documentId, userId)](#module_BZ..Document.addDislike) ⇒ <code>Boolean</code>
@@ -130,6 +132,48 @@
 - <code>DbError</code> , code = 500 - ошибка базы данных
 
 **Functiontype**: generator  
+<a name="module_BZ..Document.formatToSearch"></a>
+
+#### Document.formatToSearch(UAMS, WT, userId) ⇒ <code>Object</code>
+**Kind**: static method of <code>[Document](#module_BZ..Document)</code>  
+**Returns**: <code>Object</code> - <pre>
+
+    {
+         title: 'Первый документ',
+            author: {
+                username: 'Антон Зуев',
+                id: 577aa958445338a73b232aff
+            },
+            likes: {
+                liked: true,
+                amount: 2
+            },
+            dislikes: {
+                disliked: false,
+                amount: 0
+            },
+            rating: 2,
+            type: {
+                id: 575195b2165f1e79574c71ff,
+                title: 'Курсовая работа'
+            },
+            watches: 0,
+            id: 56fe9c4ca960bcce0e74871f,
+            description: "Описание документа"
+       }
+
+      // пример использования
+        yield* res.formatToSearch(UAMS, RDS.getWorkTypeModel(), '56fe9c4ca960bcce0e74871f');
+
+ </pre>  
+**Functiontype**: - generator  
+
+| Param | Description |
+| --- | --- |
+| UAMS | объект модуля UAMS |
+| WT | объект модели worktype, (RDS.getWorkTypeModel()); |
+| userId | для кого форматируется документ(нужен для проставки liked и disliked) |
+
 <a name="module_BZ..Document.getDocumentsBy"></a>
 
 #### Document.getDocumentsBy(title, context, page) ⇒ <code>Promise</code> &#124; <code>Promise.&lt;T&gt;</code>
@@ -152,17 +196,7 @@
 ```js
 <pre>
     Выход - массив из документов
-    Структура документа:
-    {
-         title: 'Первый документ',
-            author: 56dc4ecc380e1b4e768fe12e,
-	        likes: 2,
-		    dislikes: 0,
-		    rating: 2,
-		    type: 56dc4ecc380e1b4e768fe12e,
-		    watches: 7,
-		    id: 56fe9c4ca960bcce0e74871f
-	    }
+    Перед отдачей пользователю нужно у каждого документа вызвать document.formatToSearch
    </pre>
 ```
 <a name="module_BZ..Document.addLike"></a>

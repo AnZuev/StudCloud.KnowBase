@@ -20,6 +20,7 @@ const Mongoose = require('mongoose'),
  * @class module:BZ~Document
  * @classDesc Класс, представляющий сущность document
  * @property title {String} - Название
+ * @property description {String} - Описание
  * @property author {Mongoose.Types.ObjectId} - Автор
  * @property created {Date} - Дата создания
  * @property social {object} - Объект соц информации
@@ -44,6 +45,10 @@ let Document = new Schema({
 	title:{
 		type: String,
 		required: true
+	},
+	description:{
+		type: String,
+		required: false
 	},
 	author:{
 		type: Schema.Types.ObjectId,

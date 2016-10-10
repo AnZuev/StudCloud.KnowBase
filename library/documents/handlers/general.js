@@ -28,12 +28,12 @@ Document.statics.addDocument = function*(document){
 		document.parts = [];
 	}
 
-
 	var newDoc = new this({
 		title: document.title,
 		author: document.author,
 		search: document.search,
-		parts: document.parts
+		parts: document.parts,
+		description: document.description || ""
 	});
 	yield* newDoc.saveDoc();
 };

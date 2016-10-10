@@ -48,17 +48,7 @@ Document.statics.getById = function(id){
  * @example
  * <pre>
  *     Выход - массив из документов
- *     Структура документа:
- *     {
- *          title: 'Первый документ',
-            author: 56dc4ecc380e1b4e768fe12e,
-	        likes: 2,
-		    dislikes: 0,
-		    rating: 2,
-		    type: 56dc4ecc380e1b4e768fe12e,
-		    watches: 7,
-		    id: 56fe9c4ca960bcce0e74871f
-	    }
+ *     Перед отдачей пользователю нужно у каждого документа вызвать document.formatToSearch
  *    </pre>
  */
 Document.statics.getDocumentsBy = function(title, context, page){
@@ -72,20 +62,6 @@ Document.statics.getDocumentsBy = function(title, context, page){
 		$match: context
 	};
 
-	let format = {
-		$project: {
-			title: "$title",
-			author: "$author",
-			likes: {$size: "$social.likes"},
-			dislikes: {$size: "$social.dislikes"},
-			rating: {$size: "$social.downloads"},
-			type: "$search.cType",
-			watches: "$social.watches",
-			id: "$_id",
-			_id: 0
-		}
-	};
-
 	let limit = {
 		$limit: 20
 	};
@@ -97,7 +73,6 @@ Document.statics.getDocumentsBy = function(title, context, page){
 		$skip: page * 20
 	};
 	let promise = this.aggregate([match, format, sort, skip, limit]).exec();
-	//let promise = this.find(context, format).sort({"rating": 1}).limit(20).skip(20*page).exec();
 	return promise
 		.then(function(documents){
 			return documents;
@@ -134,4 +109,14 @@ function validateContext(rawContext){
 		}
 	}
 	return context;
+}
+
+
+Array.prototype.findInArray = function(elem){
+	for(let i = 0; i < this.length; i++){
+		if(elem.toString() == this[i].toString()){
+			return true;
+		}
+	}
+	return false;
 }

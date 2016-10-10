@@ -3,7 +3,8 @@
     "UsersUri": "mongodb://127.0.0.1/test_IStudentAPI",
     "PSSUri": "mongodb://127.0.0.1/test_PSS",
     "SSOUri": "mongodb://127.0.0.1/test_sso",
-    "BZUri": "mongodb://127.0.0.1/test_IStudentAPI"
+    "BZUri": "mongodb://127.0.0.1/test_IStudentAPI",
+    "RDSUri": "mongodb://127.0.0.1/test_IStudentAPI"
   },
   "sso":{
     "session":{
